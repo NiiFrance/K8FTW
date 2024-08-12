@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: gaia
+spec:
+  serviceName: "gaia"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: gaia
+  template:
+    metadata:
+      labels:
+        app: gaia
+    spec:
+      containers:
+      - name: gaia
+        image: your-registry/gaia:v7.1.0
+        ports:
+        - containerPort: 26657
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+        volumeMounts:
+        - name: data
+          mountPath: /root/.gaia
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
