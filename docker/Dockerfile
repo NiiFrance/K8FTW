@@ -2,7 +2,7 @@
 FROM golang:1.19-alpine AS builder
 
 # Install build dependencies
-RUN apk add --no-cache git make gcc libc-dev
+RUN apk add --no-cache git make gcc libc-dev linux-headers
 
 # Set working directory
 WORKDIR /gaia
