@@ -18,6 +18,7 @@ spec:
         image: your-registry/gaia:v7.1.0
         ports:
         - containerPort: 26657
+        - containerPort: 26660  # Add this line for Prometheus metrics port
         resources:
           requests:
             cpu: 500m
@@ -28,6 +29,12 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /root/.gaia
+        - name: config
+          mountPath: /root/.gaia/config
+      volumes:
+      - name: config
+        configMap:
+          name: gaia-config
   volumeClaimTemplates:
   - metadata:
       name: data

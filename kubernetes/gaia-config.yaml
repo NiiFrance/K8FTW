@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gaia-config
+data:
+  config.toml: |
+    # This is a TOML config file for Gaia
+
+    # Main configuration
+    [base]
+    # Minimum gas prices for transactions to be accepted into the mempool
+    minimum-gas-prices = "0.025uatom"
+
+    # Instrumentation configuration
+    [instrumentation]
+    # Enable Prometheus metrics
+    prometheus = true
+    # Address to listen for Prometheus collector(s) connections
+    prometheus-listen-addr = ":26660"
+
+    # Telemetry configuration
+    [telemetry]
+    enabled = true
+    prometheus-retention-time = 60
+
+    # API configuration
+    [api]
+    # Enable defines if the API server should be enabled.
+    enable = true
+    # Address defines the API server to listen on.
+    address = "tcp://0.0.0.0:1317"
+
+    # State sync configuration
+    [state-sync]
+    snapshot-interval = 1000
+    snapshot-keep-recent = 10
+
+    # GRPC Configuration
+    [grpc]
+    # Enable defines if the gRPC server should be enabled.
+    enable = true
+    # Address defines the gRPC server address to bind to.
+    address = "0.0.0.0:9090"
+
+    # Rosetta configuration
+    [rosetta]
+    # Enable defines if the Rosetta API server should be enabled.
+    enable = true
+    # Address defines the Rosetta API server address to bind to.
+    address = ":8080"
