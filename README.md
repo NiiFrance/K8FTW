@@ -20,9 +20,10 @@ project-root/
 │   └── Dockerfile
 │
 ├── kubernetes/
-│   ├── gaia-statefulset.yaml
+│   ├── gaia-config.yaml
 │   ├── gaia-service.yaml
-│   └── gaia-servicemonitor.yaml
+│   ├── gaia-servicemonitor.yaml
+|   └── gaia-v7.1.0-statefulset.yaml
 │
 ├── scripts/
 │   ├── process_logs.sh
